@@ -83,24 +83,27 @@ section {
     padding: 10rem 9% 2rem;
 }
 
+/* --- HOME SECTION STYLES --- */
 .home {
     display: flex;
+    justify-content: space-between; /* Distributes space between content and image area */
     align-items: center;
     padding: 0 9%;
-    background: url('images/home.png') no-repeat;
-    background-size: cover;
-    background-position: center;
+    /* background: url('images/home.png') no-repeat; Optional: Comment out or remove if you don't want a full background image for the section */
+    /* background-size: cover; */
+    /* background-position: center; */
+    position: relative; /* Important for positioning .home-sci */
 }
 
 .home-content {
-    max-width: 60rem;
-    z-index: 99;
+    width: 55%; /* Adjust as needed, e.g., 50% or 60rem */
+    z-index: 99; /* Keep it above the image area's animation layer if they overlap */
 }
 
 .home-content h1 {
     position: relative;
     display: inline-block;
-    font-size: 5.12rem; /* change here */
+    font-size: 5.12rem;
     font-weight: 700;
     line-height: 1.3;
 }
@@ -115,7 +118,6 @@ section {
 }
 
 .home-content .text-animate h3 {
-    /* change here */
     font-size: 3.05rem;
     font-weight: 700;
     color: transparent;
@@ -153,6 +155,56 @@ section {
     font-size: 1.6rem;
     margin: 2rem 0 4rem;
 }
+
+/* New styles for the image area */
+.home-img-area {
+    position: relative; /* For absolute positioning of children like home-imgHover and animate.home-img */
+    width: 40%; /* Adjust as needed, e.g., 45% or a fixed width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem; /* Optional padding around the image */
+}
+
+.home-img-area .profile-image {
+    display: block;
+    max-width: 100%;
+    max-height: 70vh; /* Limit image height */
+    height: auto;
+    border-radius: 15px; /* Optional: if you want rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Optional: add a subtle shadow */
+    object-fit: contain; /* or 'cover' if you want it to fill the area, possibly cropping */
+    z-index: 1; /* Image is at the bottom layer within home-img-area */
+}
+
+.home-img-area .home-imgHover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Covers the home-img-area */
+    height: 100%;
+    background: transparent;
+    transition: .3s; /* Snappier hover effect */
+    z-index: 2; /* Above the image, below the animation layer */
+    border-radius: 15px; /* Match image border-radius if any */
+}
+
+.home-img-area .home-imgHover:hover {
+    background: var(--bg-color);
+    opacity: .8;
+}
+
+.home-img-area .animate.home-img { /* This is the overlay for the image area itself */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    z-index: 3; /* Topmost layer, animates away */
+    border-radius: 15px; /* Match image border-radius if any */
+}
+
 
 .btn-box {
     position: relative;
@@ -217,9 +269,12 @@ section {
 .home-sci {
     position: absolute;
     bottom: 4rem;
-    width: 170px;
+    /* left: 9%; Will be set by section padding */
+    width: auto; /* Adjust based on content */
+    min-width: 200px; /* Increased min-width for 4 icons */
     display: flex;
     justify-content: space-between;
+    z-index: 100;
 }
 
 .home-sci a {
@@ -258,21 +313,8 @@ section {
 .home-sci a:hover::before {
     width: 100%;
 }
+/* --- END HOME SECTION STYLES --- */
 
-.home-imgHover {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 45%;
-    height: 100%;
-    background: transparent;
-    transition: 3s;
-}
-
-.home-imgHover:hover {
-    background: var(--bg-color);
-    opacity: .8;
-}
 
 .about {
     display: flex;
@@ -448,8 +490,9 @@ span {
     background: var(--second-bg-color);
 }
 
-.skills h2 {
+.skills h2 { /* Replaced .skills .heading to ensure it works, or use .skills > .heading */
     display: inline-block;
+    position: relative; /* Added for transform to work relative to flow */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -464,7 +507,7 @@ span {
     flex: 1 1 40rem;
 }
 
-.skills-column .title {
+.skills-column .title { /* This title is not used in your current skills HTML */
     position: relative;
     display: inline-block;
     font-size: 2.5rem;
@@ -561,13 +604,162 @@ span {
     width: 60%;
 }
 
+/* EXPERIENCES SECTION */
+.experiences {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background: var(--bg-color); No, this is default background already */
+    padding-bottom: 6rem;
+}
+
+.experiences .heading {
+    margin-bottom: 3rem;
+}
+
+.experiences-timeline {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--main-color);
+}
+
+.experience-item {
+    position: relative;
+    background: var(--second-bg-color);
+    border-radius: .8rem;
+    margin-bottom: 3rem;
+    padding: 1.5rem 2rem 1.2rem 2.8rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.experience-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+}
+
+.experience-item::before {
+    content: '';
+    position: absolute;
+    left: -2.0rem; /* Adjusted for better alignment on 2px border with 1.5rem padding */
+    top: 1.6rem;
+    width: 1rem;
+    height: 1rem;
+    background: var(--main-color);
+    border-radius: 50%;
+    border: 2px solid var(--bg-color); /* Ensure this matches section background */
+    box-shadow: 0 0 0 3px var(--second-bg-color); /* Ensure this matches item background */
+}
+
+.exp-date {
+    font-size: 1.4rem;
+    color: var(--main-color);
+    margin-bottom: .5rem;
+    font-weight: 500;
+}
+
+.experience-item h3 {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: .2rem;
+    font-weight: 600;
+}
+
+.experience-item h4 {
+    font-size: 1.5rem;
+    color: var(--main-color); /* Consider a slightly different color or var(--text-color) with less opacity */
+    margin-bottom: .2rem;
+    font-weight: 500;
+}
+
+.exp-client {
+    font-size: 1.3rem;
+    color: #b0c4d8; /* A lighter text color variant */
+    margin-top: .2rem;
+    font-style: italic;
+}
+
+/* ACHIEVEMENTS SECTION */
+.achievements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--second-bg-color);
+    padding-bottom: 6rem;
+    min-height: auto; /* Changed from 60vh to auto to fit content */
+}
+
+.achievements .heading {
+    margin-bottom: 3rem;
+}
+
+.achievements-list {
+    width: 100%;
+    max-width: 700px; /* Increased max-width for better look */
+    margin: 0 auto;
+}
+
+.achievement-row {
+    display: flex;
+    align-items: center;
+    background: var(--bg-color);
+    border-radius: .8rem;
+    margin-bottom: 2rem;
+    padding: 1.8rem 2.5rem; /* Increased padding */
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    transition: box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
+    position: relative;
+}
+
+.achievement-row:hover {
+    box-shadow: 0 6px 28px rgba(0,0,0,0.18);
+    transform: translateY(-3px);
+}
+
+.achievement-icon {
+    font-size: 3rem; /* Slightly larger icon */
+    color: var(--main-color);
+    margin-right: 2rem; /* Increased margin */
+    min-width: 4rem;   /* Increased min-width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.achievement-title {
+    flex: 1;
+    font-size: 2rem;
+    color: var(--text-color);
+    font-weight: 600;
+    letter-spacing: .5px; /* Reduced letter-spacing for readability */
+}
+
+.achievement-arrow {
+    font-size: 2.5rem;
+    color: var(--main-color);
+    margin-left: 1.5rem;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease; /* Smooth arrow rotation */
+}
+
+.achievement-row.open .achievement-arrow i { /* Example for accordion style */
+    transform: rotate(180deg);
+}
+
+
 .contact {
     min-height: auto;
     padding-bottom: 7rem;
 }
 
-.contact h2 {
+.contact h2 { /* Replaced .contact .heading */
     display: inline-block;
+    position: relative; /* Added for transform to work relative to flow */
     left: 50%;
     transform: translateX(-50%);
 }
@@ -606,6 +798,7 @@ span {
 .contact form .input-box .input-field input::placeholder,
 .contact form .textarea-field textarea::placeholder {
     color: var(--text-color);
+    opacity: 0.7; /* Slightly transparent placeholder */
 }
 
 .contact form .focus {
@@ -706,43 +899,49 @@ span {
     width: 100%;
     height: 100%;
     background: var(--bg-color);
-    z-index: 98;
+    z-index: 98; /* Make sure it's high enough to cover content but below popups/modals */
 }
 
-.animate.home-img {
+/* This specific rule for .animate.home-img is handled by .home-img-area .animate.home-img now */
+/* .animate.home-img {
     width: 50%;
-}
+} */
 
 .logo .animate,
 .navbar .animate,
 #menu-icon .animate,
-.home.show-animate .animate {
+.home.show-animate .animate { /* This will apply to all .animate children in .home.show-animate */
     animation: showRight 1s ease forwards;
     animation-delay: calc(.3s * var(--i));
 }
 
 .animate.scroll {
     transition: 1s ease;
-    transition-delay: calc(.3s / var(--i));
+    transition-delay: calc(.3s / var(--i)); /* Initial delay before section is in view */
     animation: none;
 }
 
-section:nth-child(odd) .animate.scroll,
+section:nth-child(odd) .animate.scroll, /* About, Skills, Contact */
 .footer .animate.scroll {
     background: var(--second-bg-color);
 }
+/* For even sections like Home, Education, Experiences, their .animate.scroll will use var(--bg-color) */
+/* unless overridden like .education .education-box .animate.scroll */
 
 .education .education-box .animate.scroll {
     width: 105%;
 }
 
+/* Rule for revealing animated sections */
 .about.show-animate .animate.scroll,
 .education.show-animate .animate.scroll,
 .skills.show-animate .animate.scroll,
+.experiences.show-animate .animate.scroll,
+.achievements.show-animate .animate.scroll,
 .contact.show-animate .animate.scroll,
 .footer.show-animate .animate.scroll {
-    transition-delay: calc(.3s * var(--i));
-    width: 0;
+    transition-delay: calc(.3s * var(--i)); /* Delay for staggered animation within the section */
+    width: 0; /* This makes the overlay disappear */
 }
 
 ::-moz-selection { /* Code for Firefox */
@@ -775,17 +974,19 @@ section:nth-child(odd) .animate.scroll,
     .home {
         padding: 0 4%;
     }
+    .home-content {
+        width: 50%;
+    }
+    .home-img-area {
+        width: 45%;
+    }
 
     .footer {
         padding: 2rem 4%;
     }
 }
 
-@media (max-width: 850px) {
-    .animate.home-img {
-        width: 55%;
-    }
-}
+/* Removed .animate.home-img width: 55% at 850px as it's handled by .home-img-area now */
 
 @media (max-width: 768px) {
     .header {
@@ -802,9 +1003,9 @@ section:nth-child(odd) .animate.scroll,
         left: -100%;
         width: 100%;
         padding: 1rem 4%;
-        background: var(--main-color);
+        background: var(--main-color); /* Changed from --bg-color for menu */
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
-        z-index: 1;
+        z-index: 1; /* Below header's z-index */
         transition: .25s ease;
         transition-delay: .25s;
     }
@@ -820,7 +1021,7 @@ section:nth-child(odd) .animate.scroll,
         left: -100%;
         width: 100%;
         height: 100%;
-        background: var(--bg-color);
+        background: var(--bg-color); /* Background for the sliding effect */
         border-top: .1rem solid rgba(0, 0, 0, .2);
         z-index: -1;
         transition: .25s ease;
@@ -839,19 +1040,101 @@ section:nth-child(odd) .animate.scroll,
         transform: translateX(-20rem);
         transition: .25s ease;
         transition-delay: 0s;
+        color: var(--bg-color); /* Text color for links in mobile menu */
     }
+    .navbar a:hover,
+    .navbar a.active {
+        color: var(--second-bg-color); /* Hover/active color for links in mobile menu */
+    }
+
 
     .navbar.active a {
         transform: translateX(0);
         transition-delay: .25s;
     }
 
-    .home-imgHover {
-        pointer-events: none;
-        background: var(--bg-color);
-        opacity: .6;
+    /* Home section responsive */
+    .home {
+        flex-direction: column; /* Stack content and image */
+        padding-top: 5rem; /* Add some padding at the top when stacked */
+        justify-content: center;
+        text-align: center; /* Center align home section content */
     }
+
+    .home-content {
+        width: 100%; /* Full width when stacked */
+        text-align: center; /* Center the text content */
+        margin-bottom: 3rem; /* Space between content and image */
+        order: 2; /* Content below image */
+    }
+
+    .home-content h1 {
+        font-size: 4.5rem; /* Adjust font size for smaller screens */
+    }
+    .home-content .text-animate {
+        margin-left: auto; /* center the text animate block */
+        margin-right: auto;
+        width: auto; /* Adjust width for animated text if needed */
+    }
+    .home-content .text-animate h3 {
+        font-size: 2.5rem; /* Adjust font size */
+    }
+
+    .home-content .btn-box {
+        justify-content: center; /* Center buttons */
+        width: auto; /* Let it size to content or set a specific width */
+        max-width: 34.5rem; /* Match original desktop width if desired */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .home-img-area {
+        width: 70%; /* Adjust width for stacked layout */
+        max-width: 300px; /* Max image width on small screens */
+        margin-bottom: 3rem; /* Space below image */
+        order: 1; /* Image above content */
+        padding: 1rem;
+    }
+
+    .home-img-area .profile-image {
+        max-height: 50vh; /* Adjust max height for mobile */
+    }
+
+    .home-sci {
+        position: static; /* Remove absolute positioning */
+        order: 3; /* Social icons at the bottom */
+        width: 100%;
+        justify-content: center;
+        margin-top: 2rem; /* Space above social icons */
+        margin-bottom: 2rem;
+    }
+
+    .home-sci a {
+        margin: 0 1rem; /* Spacing for social icons */
+    }
+
+    /* Removed old .home-imgHover pointer-events as it's now part of .home-img-area */
+
+    /* Responsive for achievements */
+    .achievements-list {
+        max-width: 95%; /* Adjusted for slightly more padding */
+    }
+    .achievement-row {
+        padding: 1.5rem 1.8rem; /* Adjusted padding */
+    }
+    .achievement-title {
+        font-size: 1.8rem; /* Adjusted font size */
+    }
+    .achievement-icon {
+        font-size: 2.5rem; /* Adjusted icon size */
+        margin-right: 1.5rem;
+    }
+    .achievement-arrow {
+        font-size: 2.2rem;
+    }
+
 }
+
 
 @media (max-width: 520px) {
     html {
@@ -859,23 +1142,27 @@ section:nth-child(odd) .animate.scroll,
     }
 
     .home-content h1 {
-        display: flex;
-        flex-direction: column;
+        /* display: flex; */ /* Removed, let it be block */
+        /* flex-direction: column; */
     }
 
     .home-sci {
-        width: 160px;
+        width: auto; /* Adjusted for centering */
+        min-width: 0;
     }
-
-    .home-sci a {
-        width: 38px;
-        height: 38px;
-    }
+    /* .home-sci a is already handled by general .home-sci a and mobile layout */
 }
 
 @media (max-width: 462px) {
     .home-content h1 {
-        font-size: 5.2rem;
+        font-size: 4.2rem; /* Slightly smaller for very small screens */
+    }
+     .home-content .text-animate h3 {
+        font-size: 2.2rem; /* Adjust font size */
+    }
+    .home-img-area {
+        width: 80%;
+        max-width: 250px;
     }
 
     .education {
@@ -890,26 +1177,18 @@ section:nth-child(odd) .animate.scroll,
         flex-direction: column-reverse;
     }
 
-    .footer p {
+    .footer-text p {
         margin-top: 2rem;
         text-align: center;
     }
 }
 
 @media (max-width: 371px) {
-    .home {
-        justify-content: center;
-    }
-
-    .home-content {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
-    }
+    /* .home handled by general mobile styles */
+    /* .home-content handled by general mobile styles */
 
     .home-content h1 {
-        font-size: 5rem;
+        font-size: 4rem; /* Further adjust for very small screens */
     }
 }
 
