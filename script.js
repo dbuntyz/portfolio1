@@ -79,10 +79,13 @@ navLinks.forEach(link => {
 
 // You can add JavaScript for the achievements accordion functionality here if needed
 // Example:
-// const achievementRows = document.querySelectorAll('.achievement-row');
-// achievementRows.forEach(row => {
-//     row.addEventListener('click', () => {
-//         row.classList.toggle('open');
-//         // Add logic to show/hide details if you have them
-//     });
-// });
+const achievementRows = document.querySelectorAll('.achievement-row');
+achievementRows.forEach(row => {
+    row.addEventListener('click', () => {
+        row.classList.toggle('open');
+        const details = row.nextElementSibling;
+        if (details && details.classList.contains('achievement-details')) {
+            details.classList.toggle('visible');
+        }
+    });
+});
