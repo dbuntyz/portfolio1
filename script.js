@@ -45,7 +45,6 @@ window.onscroll = () => {
         header.classList.toggle('sticky', window.scrollY > 100);
     }
 
-
     // remove toggle icon and navbar when click navbar links (scroll)
     // or when scrolling away from the top if menu is open
     if (navbar.classList.contains('active')) {
