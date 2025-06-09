@@ -1,8 +1,7 @@
 # Simple Animated Portfolio
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/dbuntyz/portfolio1)
-![GitHub stars](https://img.shields.io/github/stars/repo-size/dbuntyz/portfolio1?style=social)
-![GitHub forks](https://img.shields.io/github/forks/repo-size/dbuntyz/portfolio1?style=social)
+
 
 A fully responsive animated personal portfolio website, responsive for all devices, built using HTML, CSS, and JavaScript.
 
