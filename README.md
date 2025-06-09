@@ -18,11 +18,11 @@ To install, follow these steps:
 Linux and macOS:
 
 ```bash
-sudo git clone https://github.com/repo-size/dbuntyz/portfolio1.git
+sudo git clone https://github.com/dbuntyz/portfolio1.git
 ```
 
 Windows:
 
 ```bash
-git clone https://github.com/repo-size/dbuntyz/portfolio1.git
+git clone https://github.com/dbuntyz/portfolio1.git
 ```
