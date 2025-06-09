@@ -13,8 +13,21 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <!-- Optimized non-blocking Google Fonts load -->
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800;900&display=swap">
+    </noscript>
+
     <!-- box icons -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="preload" as="style" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    </noscript>
 </head>
 
 <body>
@@ -80,10 +93,14 @@
 
 
         <div class="home-sci">
-            <a href="https://www.facebook.com/dbuntyz" target="_blank" aria-label="Facebook profile"><i class='bx bxl-facebook'></i></a>
-            <a href="https://www.instagram.com/dbuntyz" target="_blank" aria-label="Instagram profile"><i class='bx bxl-instagram'></i></a>
-            <a href="https://x.com/dbuntyz" target="_blank" aria-label="Twitter profile"><i class='bx bxl-twitter'></i></a>
-            <a href="https://www.linkedin.com/in/dbuntyz/" target="_blank" aria-label="LinkedIn profile"><i class='bx bxl-linkedin'></i></a>
+            <a href="https://www.facebook.com/dbuntyz" target="_blank" aria-label="Facebook profile"><i
+                    class='bx bxl-facebook'></i></a>
+            <a href="https://www.instagram.com/dbuntyz" target="_blank" aria-label="Instagram profile"><i
+                    class='bx bxl-instagram'></i></a>
+            <a href="https://x.com/dbuntyz" target="_blank" aria-label="Twitter profile"><i
+                    class='bx bxl-twitter'></i></a>
+            <a href="https://www.linkedin.com/in/dbuntyz/" target="_blank" aria-label="LinkedIn profile"><i
+                    class='bx bxl-linkedin'></i></a>
             <span class="animate" style="--i:6;"></span> <!-- This animation is for the social icons block -->
         </div>
     </section>
@@ -93,7 +110,8 @@
         <h2 class="heading">About <span>Me</span><span class="animate scroll" style="--i:1;"></span></h2>
 
         <div class="about-img">
-            <img src="images/about.jpg" alt="Sourav Saha working on technology" loading="lazy"> <!-- Make sure 'images/about.jpg' exists -->
+            <img src="images/about.jpg" alt="Sourav Saha working on technology" loading="lazy">
+            <!-- Make sure 'images/about.jpg' exists -->
             <span class="circle-spin"></span>
             <span class="animate scroll" style="--i:2;"></span>
         </div>
